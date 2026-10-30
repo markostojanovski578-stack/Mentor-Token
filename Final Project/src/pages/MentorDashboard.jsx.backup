@@ -1,0 +1,1215 @@
+
+import { useEffect, useState } from "react";
+import "./MentorDashboard.css";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+} from "recharts";
+import { NavLink } from "react-router-dom";
+
+
+function MentorDashboard() {
+  const [showEditWindow, setShowEditWindow] = useState(false);
+  const [activePage, setActivePage] = useState("dashboard");
+  const [feedJobs, setFeedJobs] = useState([]);
+  const [selectedJob, setSelectedJob] = useState(null);
+  const [sortBy, setSortBy] = useState("newest");
+  const [category, setCategory] = useState("all");
+  const [jobListView, setJobListView] = useState(false);
+  const [skills, setSkills] = useState("");
+  const [description, setDescription] = useState("");
+  const [phone, setPhone] = useState("");
+  const [stats, setStats] = useState(null);
+  const [selectedStat, setSelectedStat] = useState("total");
+  const [dashboardData, setDashboardData] = useState(null);
+  const [jobFilter, setJobFilter] = useState("all");
+  const [mentorProfile, setMentorProfile] = useState(null);
+
+  const token = localStorage.getItem("token");
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+  };
+
+  const uploadMentorPhoto = async (event) => {
+  const file = event.target.files[0];
+
+  if (!file) return;
+
+  const formData = new FormData();
+  formData.append("mentorPhoto", file);
+
+  try {
+    const token = localStorage.getItem("token");
+
+    const response = await fetch(
+      "http://localhost:10000/api/mentor-profile/photo",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+  console.log("PHOTO UPLOAD ERROR:", response.status, data);
+  alert(data.error || `Upload failed (${response.status})`);
+  return;
+}
+
+    setMentorProfile((oldProfile) => ({
+      ...oldProfile,
+      mentorPhoto: data.mentorPhoto,
+    }));
+
+    alert("Profile picture updated!");
+  } catch (error) {
+    console.log("PHOTO ERROR:", error);
+    alert("Could not upload picture");
+  }
+};
+
+  const saveMentorStats = async () => {
+    const skillList = skills
+      .split("|")
+      .map((skill) => skill.trim())
+      .filter((skill) => skill !== "");
+
+    if (skillList.length > 3) {
+      alert("You can only add 3 skills.");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        "http://localhost:10000/api/mentor-profile",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            mentorSkills: skillList,
+            mentorDescription: description,
+            mentorPhone: phone.trim(),
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert(data.error || "Could not save profile");
+        return;
+      }
+
+      const savedSkills = data.mentorSkills || skillList;
+      const savedDescription =
+        data.mentorDescription ?? description;
+
+      // Keep the number entered in the form unless the
+      // server explicitly returns a saved phone number.
+      const savedPhone =
+        data.mentorPhone !== undefined
+          ? data.mentorPhone
+          : phone.trim();
+
+      setSkills(savedSkills.join(" | "));
+      setDescription(savedDescription);
+      setPhone(savedPhone);
+
+      setMentorProfile((oldProfile) => ({
+        ...oldProfile,
+        mentorSkills: savedSkills,
+        mentorDescription: savedDescription,
+        mentorPhone: savedPhone,
+      }));
+
+      setShowEditWindow(false);
+      alert("Profile saved successfully!");
+    } catch (error) {
+      console.log("SAVE ERROR:", error);
+      alert("Could not connect to the server");
+    }
+  };
+
+  // Load mentor profile
+  useEffect(() => {
+    const getMentorProfile = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:10000/api/mentor-profile",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        const data = await response.json();
+
+        if (response.ok) {
+          setMentorProfile(data);
+          setSkills((data.mentorSkills || []).join(" | "));
+          setDescription(data.mentorDescription || "");
+          setPhone(data.mentorPhone || "");
+        } else {
+          console.log("PROFILE ERROR:", data);
+        }
+      } catch (error) {
+        console.log("PROFILE ERROR:", error);
+      }
+    };
+
+    getMentorProfile();
+  }, [token]);
+
+  // Load mentor statistics
+  useEffect(() => {
+    const getStats = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:10000/api/my-stats",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        const data = await response.json();
+
+        if (response.ok) {
+          setStats(data);
+        } else {
+          console.log("STATS ERROR:", data);
+        }
+      } catch (error) {
+        console.log("STATS ERROR:", error);
+      }
+    };
+
+    getStats();
+  }, [token]);
+
+  // Load assigned jobs, pending offers and applications
+  useEffect(() => {
+    const getDashboardData = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:10000/api/mentor-dashboard",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        const data = await response.json();
+
+        if (response.ok) {
+          setDashboardData(data);
+        } else {
+          console.log("DASHBOARD ERROR:", data);
+        }
+      } catch (error) {
+        console.log("DASHBOARD ERROR:", error);
+      }
+    };
+
+    getDashboardData();
+  }, [token]);
+
+  // Load available jobs
+  useEffect(() => {
+    const getFeedJobs = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:10000/api/jobs",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        const data = await response.json();
+
+        if (response.ok) {
+          setFeedJobs(
+            data.filter((job) => job.status === "pending")
+          );
+        }
+      } catch (error) {
+        console.log("JOBS ERROR:", error);
+      }
+    };
+
+    getFeedJobs();
+  }, [token]);
+
+  let chartData = [];
+
+  if (stats) {
+    if (selectedStat === "assigned") {
+      chartData = stats.assignedJobsData || [];
+    }
+
+    if (selectedStat === "applied") {
+      chartData = stats.appliedJobsData || [];
+    }
+
+    if (selectedStat === "finished") {
+      chartData = stats.finishedJobsData || [];
+    }
+
+    if (selectedStat === "total") {
+      chartData = [
+        ...(stats.assignedJobsData || []),
+        ...(stats.appliedJobsData || []),
+      ];
+    }
+  }
+
+  const createMonthlyData = (data) => {
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    const monthlyData = months.map((month) => ({
+      month,
+      count: 0,
+    }));
+
+    data.forEach((item) => {
+      const monthIndex = new Date(item.date).getMonth();
+
+      if (monthIndex >= 0 && monthIndex < 12) {
+        monthlyData[monthIndex].count += item.count;
+      }
+    });
+
+    return monthlyData;
+  };
+
+  chartData = createMonthlyData(chartData);
+
+  // Apply for a job
+  const applyForJob = async () => {
+    if (!selectedJob) return;
+
+    try {
+      const offersResponse = await fetch(
+        "http://localhost:10000/api/job-offers",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (!offersResponse.ok) {
+        throw new Error("Could not load job offers");
+      }
+
+      const offers = await offersResponse.json();
+
+      const openOffer = offers.find(
+        (offer) =>
+          String(offer.job_id) === String(selectedJob._id) &&
+          offer.type === "open" &&
+          offer.status === "pending"
+      );
+
+      if (!openOffer) {
+        alert("This job is not currently accepting applications.");
+        return;
+      }
+
+      const response = await fetch(
+        "http://localhost:10000/api/job-applications/apply",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            job_offer_id: openOffer._id,
+          }),
+        }
+      );
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Application failed");
+      }
+
+      const dashboardResponse = await fetch(
+        "http://localhost:10000/api/mentor-dashboard",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (!dashboardResponse.ok) {
+        throw new Error("Could not refresh applications");
+      }
+
+      const updatedDashboard = await dashboardResponse.json();
+
+      setDashboardData(updatedDashboard);
+      setSelectedJob(null);
+      setActivePage("dashboard");
+
+      alert("Application sent successfully!");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  // Accept direct job offer
+  const acceptJob = async (jobOfferId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:10000/api/job-offers/${jobOfferId}/accept`,
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setDashboardData((oldData) => {
+          if (!oldData) return oldData;
+
+          const acceptedJob = oldData.pendingJobs.find(
+            (job) => job.jobOfferId === jobOfferId
+          );
+
+          if (!acceptedJob) return oldData;
+
+          return {
+            ...oldData,
+            pendingJobs: oldData.pendingJobs.filter(
+              (job) => job.jobOfferId !== jobOfferId
+            ),
+            assignedJobs: [
+              ...oldData.assignedJobs,
+              {
+                _id: acceptedJob.jobId,
+                title: acceptedJob.jobTitle,
+                description: acceptedJob.description,
+                status: "in_progress",
+              },
+            ],
+          };
+        });
+      } else {
+        console.log("ACCEPT ERROR:", data);
+      }
+    } catch (error) {
+      console.log("ERROR:", error);
+    }
+  };
+
+  // Reject direct job offer
+  const rejectJob = async (jobOfferId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:10000/api/job-offers/${jobOfferId}/reject`,
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setDashboardData((oldData) => {
+          if (!oldData) return oldData;
+
+          const rejectedJob = oldData.pendingJobs.find(
+            (job) => job.jobOfferId === jobOfferId
+          );
+
+          if (!rejectedJob) return oldData;
+
+          return {
+            ...oldData,
+            pendingJobs: oldData.pendingJobs.filter(
+              (job) => job.jobOfferId !== jobOfferId
+            ),
+            rejectedJobs: [
+              ...(oldData.rejectedJobs || []),
+              {
+                jobOfferId: rejectedJob.jobOfferId,
+                jobId: rejectedJob.jobId,
+                title: rejectedJob.jobTitle,
+                description: rejectedJob.description,
+                status: "rejected",
+              },
+            ],
+          };
+        });
+      } else {
+        console.log("REJECT ERROR:", data);
+      }
+    } catch (error) {
+      console.log("ERROR:", error);
+    }
+  };
+
+  // Filter dashboard jobs
+  let filteredJobs = [];
+
+  if (dashboardData) {
+    if (jobFilter === "all") {
+      filteredJobs = [
+        ...(dashboardData.assignedJobs || []),
+        ...(dashboardData.rejectedJobs || []),
+      ];
+    }
+
+    if (jobFilter === "done") {
+      filteredJobs = (dashboardData.assignedJobs || []).filter(
+        (job) => job.status === "completed"
+      );
+    }
+
+    if (jobFilter === "rejected") {
+      filteredJobs = dashboardData.rejectedJobs || [];
+    }
+
+    if (jobFilter === "in_progress") {
+      filteredJobs = (dashboardData.assignedJobs || []).filter(
+        (job) => job.status === "in_progress"
+      );
+    }
+  }
+
+  // Sort and filter job feed
+  const sortedFeedJobs = feedJobs
+    .filter((job) => {
+      if (category === "all") return true;
+      return job.category === category;
+    })
+    .sort((a, b) => {
+      if (sortBy === "newest") {
+        return new Date(b.created_at) - new Date(a.created_at);
+      }
+
+      return new Date(a.created_at) - new Date(b.created_at);
+    });
+
+  const mentorPhoto = mentorProfile?.mentorPhoto
+    ? mentorProfile.mentorPhoto.startsWith("http")
+      ? mentorProfile.mentorPhoto
+      : `http://localhost:10000${
+          mentorProfile.mentorPhoto.startsWith("/") ? "" : "/"
+        }${mentorProfile.mentorPhoto}`
+    : "";
+
+  return (
+    <main className="mentor-dashboard-main">
+      <div className="mentor-dashboard-sidebar">
+        <img
+          className="mentor-dashboard-logo"
+          src="/logosolo.png"
+          alt="Logo"
+        />
+
+        <div className="mentor-dashboard-name">
+          Mentor Token
+        </div>
+
+        <button
+          className="mentor-dashboard-button squares-button"
+          onClick={() => setActivePage("dashboard")}
+        >
+          <img src="/squares.png" alt="" />
+          <span>Dashboard</span>
+        </button>
+
+        <button
+          className="mentor-dashboard-button profile-button"
+          onClick={() => setActivePage("stats")}
+        >
+          <img src="/trello.png" alt="" />
+          <span>My Stats</span>
+        </button>
+
+        <button
+          className="mentor-dashboard-button disc-button"
+          onClick={() => setActivePage("jobs")}
+        >
+          <img src="/disc.png" alt="" />
+          <span>Jobs</span>
+        </button>
+
+        <NavLink to="/assistant">
+         AI Assistant
+       </NavLink>
+
+        <button
+          className="mentor-dashboard-logout-button"
+          onClick={handleLogout}
+        >
+          <img src="/logout.png" alt="" />
+          <span>Logout</span>
+        </button>
+      </div>
+
+      <div className="mentor-dashboard-search">
+        <img src="/search-normal.png" alt="" />
+        <input type="text" placeholder="Search" />
+      </div>
+
+      {activePage === "stats" && (
+        <>
+          <h2 className="mentor-dashboard-stats-title">
+            My Stats
+          </h2>
+
+          <div className="mentor-card">
+            <div className="mentor-card-picture">
+  <label
+    htmlFor="mentor-photo-upload"
+    style={{
+      cursor: "pointer",
+      display: "block",
+      width: "100%",
+      height: "100%",
+      overflow: "hidden",
+      borderRadius: "50%",
+    }}
+    title="Click to change profile picture"
+  >
+    {mentorPhoto ? (
+      <img
+        src={mentorPhoto}
+        alt={mentorProfile?.username || "Mentor"}
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+        }}
+      />
+    ) : (
+      <span
+        style={{
+          display: "flex",
+          width: "100%",
+          height: "100%",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "#696CFF",
+          color: "white",
+          fontSize: 40,
+        }}
+      >
+        {mentorProfile?.username?.charAt(0).toUpperCase() || "M"}
+      </span>
+    )}
+  </label>
+
+  <input
+    id="mentor-photo-upload"
+    type="file"
+    accept="image/png,image/jpeg,image/webp"
+    onChange={uploadMentorPhoto}
+    style={{ display: "none" }}
+  />
+</div>
+
+            <div className="mentor-card-name">
+              {mentorProfile?.username || "Mentor"}
+            </div>
+
+            {mentorProfile?.mentorLinkedin && (
+              <a
+                href={mentorProfile.mentorLinkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  className="mentor-card-linkedin"
+                  src="/linkedin2.png"
+                  alt="LinkedIn"
+                />
+              </a>
+            )}
+
+            <div className="mentor-card-position">
+              {mentorProfile?.mentorPosition || "Mentor"}
+            </div>
+
+            <div className="mentor-card-mail">
+              <img src="/mail.svg" alt="Email" />
+              <span>{mentorProfile?.email || ""}</span>
+            </div>
+
+            <div className="mentor-card-phone">
+              <img src="/phone.svg" alt="Phone" />
+              <span>
+                {mentorProfile?.mentorPhone || "Not added yet"}
+              </span>
+            </div>
+          </div>
+
+          <div className="mentor-info-card">
+            <div className="mentor-info-about">
+              About
+            </div>
+
+            <div className="mentor-info-skills">
+              Skills: {skills}
+            </div>
+
+            <div className="mentor-info-description">
+              {description}
+            </div>
+
+            <button
+              className="mentor-info-edit-button"
+              onClick={() => setShowEditWindow(true)}
+            >
+              <img src="/edit.png" alt="Edit" />
+            </button>
+          </div>
+
+          <div className="mentor-performance-title">
+            Performance Over Time
+          </div>
+
+          <div className="mentor-performance-chart">
+            <div className="mentor-statistics-title">
+              STATISTICS
+            </div>
+
+            <div className="mentor-statistics-subtitle">
+              Overrall target accomplishment over the year
+            </div>
+
+            <LineChart
+              width={508.619}
+              height={177}
+              className="mentor-line-chart"
+              data={chartData}
+              margin={{
+                top: 0,
+                right: 0,
+                bottom: 0,
+                left: 0,
+              }}
+            >
+              <XAxis
+                dataKey="month"
+                axisLine={{
+                  stroke: "#CBC6D7",
+                  strokeWidth: 0.99,
+                }}
+                tick={{
+                  fill: "#CBC6D7",
+                  fontFamily: "Inter",
+                  fontSize: 11.9,
+                  fontWeight: 500,
+                }}
+                tickLine={false}
+              />
+
+              <YAxis
+                axisLine={false}
+                tickLine={false}
+                tick={{
+                  fill: "#CBC6D7",
+                  fontFamily: "Inter",
+                  fontSize: 11.9,
+                  fontWeight: 500,
+                }}
+                tickCount={2}
+                allowDecimals={false}
+              />
+
+              <CartesianGrid
+                horizontal={false}
+                vertical={false}
+              />
+
+              <Tooltip />
+
+              <Line
+                type="monotone"
+                dataKey="count"
+                stroke="#696CFF"
+                strokeWidth={2.97}
+                dot={false}
+                activeDot={false}
+              />
+            </LineChart>
+          </div>
+
+          <div className="mentor-quick-overview-title">
+            Quick Overview
+          </div>
+
+          <div className="mentor-quick-overview">
+            <button
+              className={`quick-overview-card ${
+                selectedStat === "total" ? "selected" : ""
+              }`}
+              onClick={() => setSelectedStat("total")}
+            >
+              <span>Total Jobs</span>
+              <strong>
+                {stats ? stats.totalJobs : "—"}
+              </strong>
+            </button>
+
+            <button
+              className={`quick-overview-card ${
+                selectedStat === "assigned" ? "selected" : ""
+              }`}
+              onClick={() => setSelectedStat("assigned")}
+            >
+              <span>Total Assigned Jobs</span>
+              <strong>
+                {stats ? stats.assignedJobs : "—"}
+              </strong>
+            </button>
+
+            <button
+              className={`quick-overview-card ${
+                selectedStat === "applied" ? "selected" : ""
+              }`}
+              onClick={() => setSelectedStat("applied")}
+            >
+              <span>Jobs that you have applied</span>
+              <strong>
+                {stats ? stats.appliedJobs : "—"}
+              </strong>
+            </button>
+
+            <button
+              className={`quick-overview-card ${
+                selectedStat === "finished" ? "selected" : ""
+              }`}
+              onClick={() => setSelectedStat("finished")}
+            >
+              <span>Finished Jobs</span>
+              <strong>
+                {stats ? stats.finishedJobs : "—"}
+              </strong>
+            </button>
+          </div>
+
+          {showEditWindow && (
+            <div className="mentor-edit-overlay"></div>
+          )}
+
+          {showEditWindow && (
+            <div className="mentor-edit-window">
+              <button
+                className="mentor-edit-close-button"
+                onClick={() => setShowEditWindow(false)}
+              >
+                <img src="/plus-circle.svg" alt="Close" />
+              </button>
+
+              <div className="mentor-edit-title">
+                EDIT STATS
+              </div>
+
+              <div className="mentor-edit-skills-field">
+                <input
+                  type="text"
+                  value={skills}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    const skillList = value.split("|");
+
+                    if (skillList.length <= 3) {
+                      setSkills(value);
+                    }
+                  }}
+                  onKeyDown={(e) => {
+                    if (
+                      e.key === "|" &&
+                      skills.split("|").length >= 3
+                    ) {
+                      e.preventDefault();
+                    }
+                  }}
+                  placeholder=""
+                />
+                <label>Skills</label>
+              </div>
+
+              <div className="mentor-edit-description-field">
+                <textarea
+                  value={description}
+                  onChange={(e) =>
+                    setDescription(e.target.value)
+                  }
+                  placeholder="Write a short description about yourself"
+                ></textarea>
+                <label>Description</label>
+              </div>
+
+              <div className="mentor-edit-phone-field">
+                <input
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  placeholder="+389 70 123 456"
+                  maxLength={30}
+                />
+                <label>Phone Number</label>
+              </div>
+
+              <button
+                className="mentor-edit-save-button"
+                onClick={saveMentorStats}
+              >
+                Save
+              </button>
+            </div>
+          )}
+        </>
+      )}
+
+      {activePage === "dashboard" && (
+        <>
+          <div className="assigned-jobs-section">
+            <div className="dashboard-section-header">
+              <h3>Assigned Jobs</h3>
+
+              <div className="assigned-jobs-filters">
+                <button
+                  className={
+                    jobFilter === "all" ? "active" : ""
+                  }
+                  onClick={() => setJobFilter("all")}
+                >
+                  All
+                </button>
+
+                <button
+                  className={
+                    jobFilter === "done" ? "active" : ""
+                  }
+                  onClick={() => setJobFilter("done")}
+                >
+                  Done
+                </button>
+
+                <button
+                  className={
+                    jobFilter === "rejected" ? "active" : ""
+                  }
+                  onClick={() => setJobFilter("rejected")}
+                >
+                  Rejected
+                </button>
+
+                <button
+                  className={
+                    jobFilter === "in_progress" ? "active" : ""
+                  }
+                  onClick={() => setJobFilter("in_progress")}
+                >
+                  In Progress
+                </button>
+              </div>
+            </div>
+
+            <div className="assigned-jobs-list">
+              {filteredJobs.map((job) => (
+                <div
+                  className="dashboard-job-card"
+                  key={job._id || job.jobOfferId}
+                >
+                  <span className="dashboard-job-title">
+                    {job.title}
+                  </span>
+
+                  <div
+                    className={`dashboard-job-status ${
+                      job.status === "completed"
+                        ? "done"
+                        : job.status === "rejected"
+                        ? "rejected"
+                        : "in-progress"
+                    }`}
+                  >
+                    {job.status === "completed"
+                      ? "DONE"
+                      : job.status === "rejected"
+                      ? "REJECTED"
+                      : "IN PROGRESS"}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="pending-jobs-section">
+            <h3>Pending Jobs</h3>
+
+            <div className="pending-jobs-subtitle">
+              Jobs offered from your startup
+            </div>
+
+            <div className="pending-jobs-list">
+              {(dashboardData?.pendingJobs || []).map(
+                (job) => (
+                  <div
+                    className="pending-job-card"
+                    key={job.jobOfferId}
+                  >
+                    <span className="pending-job-title">
+                      {job.jobTitle}
+                    </span>
+
+                    <button
+                      className="pending-accept-button"
+                      onClick={() =>
+                        acceptJob(job.jobOfferId)
+                      }
+                    >
+                      Accept
+                    </button>
+
+                    <button
+                      className="pending-reject-button"
+                      onClick={() =>
+                        rejectJob(job.jobOfferId)
+                      }
+                    >
+                      Reject
+                    </button>
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+
+          <div className="applications-sent-section">
+            <h3>Applications sent</h3>
+
+            <div className="applications-sent-subtitle">
+              Jobs you have applied to
+            </div>
+
+            <div className="applications-sent-list">
+              {(dashboardData?.applicationsSent || []).map(
+                (application) => (
+                  <div
+                    className="application-sent-card"
+                    key={application.applicationId}
+                  >
+                    <span className="application-sent-title">
+                      {application.jobTitle}
+                    </span>
+
+                    <img
+                      className="application-clock"
+                      src="/clock.svg"
+                      alt=""
+                    />
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+        </>
+      )}
+
+      {activePage === "jobs" && (
+        <div className="mentor-job-feed">
+          <h2>Startup Open Jobs</h2>
+
+          <div className="mentor-job-feed-controls">
+            <select
+              value={sortBy}
+              onChange={(e) =>
+                setSortBy(e.target.value)
+              }
+              className="mentor-job-sort"
+            >
+              <option value="newest">
+                Sort by: Newest First
+              </option>
+
+              <option value="oldest">
+                Sort by: Oldest First
+              </option>
+            </select>
+
+            <select
+              value={category}
+              onChange={(e) =>
+                setCategory(e.target.value)
+              }
+              className="mentor-job-category"
+            >
+              <option value="all">
+                Category: All Categories
+              </option>
+              <option value="business">
+                Business Strategy
+              </option>
+              <option value="marketing">
+                Marketing
+              </option>
+              <option value="sales">
+                Sales
+              </option>
+              <option value="technology">
+                Technology & IT
+              </option>
+              <option value="finance">
+                Finance
+              </option>
+              <option value="product">
+                Product Development
+              </option>
+              <option value="operations">
+                Operations & Management
+              </option>
+              <option value="hr">
+                Human Resources
+              </option>
+            </select>
+
+            <button
+              type="button"
+              className={`mentor-job-layout-button ${
+                jobListView ? "active" : ""
+              }`}
+              onClick={() =>
+                setJobListView(!jobListView)
+              }
+              title={
+                jobListView ? "Grid View" : "List View"
+              }
+            >
+              <span className="mentor-job-layout-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+            </button>
+          </div>
+
+          <div
+            className={`mentor-job-feed-list ${
+              jobListView
+                ? "mentor-job-list-view"
+                : ""
+            }`}
+          >
+            {sortedFeedJobs.map((job) => (
+              <div
+                className="mentor-feed-job-card"
+                key={job._id}
+              >
+                <div className="mentor-feed-company">
+                  <div className="mentor-feed-company-logo">
+                    <img src="/logosolo.png" alt="" />
+                  </div>
+
+                  <span>
+                    {job.companyName || "Startup"}
+                  </span>
+                </div>
+
+                <h3>{job.title}</h3>
+                <p>{job.description}</p>
+
+                <button
+                  onClick={() => setSelectedJob(job)}
+                >
+                  View More
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {selectedJob && (
+        <div className="mentor-job-modal-overlay">
+          <div className="mentor-job-modal">
+            <button
+              className="mentor-job-modal-close"
+              onClick={() => setSelectedJob(null)}
+            >
+              ×
+            </button>
+
+            <div className="mentor-job-modal-company-info">
+              <div className="mentor-job-modal-logo">
+                <img
+                  src="/logosolo.png"
+                  alt="Company logo"
+                />
+              </div>
+
+              <span className="mentor-job-modal-company-name">
+                {selectedJob.companyName || "Startup"}
+              </span>
+            </div>
+
+            <h2>{selectedJob.title}</h2>
+
+            <p className="mentor-job-modal-description">
+              {selectedJob.description}
+            </p>
+
+            <button
+              className="mentor-job-modal-apply"
+              onClick={applyForJob}
+            >
+              Apply
+            </button>
+          </div>
+        </div>
+      )}
+    </main>
+  );
+}
+
+export default MentorDashboard;

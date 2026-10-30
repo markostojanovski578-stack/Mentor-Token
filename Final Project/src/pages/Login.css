@@ -1,0 +1,262 @@
+
+
+.login-main {
+  width: 100vw;
+  height: 1024px;
+  margin: 0;
+  background: linear-gradient(147.1deg, #696CFF 35.1%, #9574FF 77.5%);
+  overflow: hidden;
+}
+
+.login-white-section {
+  width: 1031px;
+  height: 1024px;
+  margin-left: 620px;
+  border-radius: 41px;
+  background: #FFFFFF;
+}
+
+.login-title {
+  position: absolute;
+  width: 442px;
+  height: 267px;
+  top: 99px;
+  left: 79px;
+
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  font-size: 88.63px;
+  line-height: 89px;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+
+.login-subtitle {
+  position: absolute;
+  width: 433px;
+  height: 89px;
+  top: 344px;
+  left: 79px;
+
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 89px;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+.login-rocket {
+  position: absolute;
+  width: 1071.8098172667103px;
+  height: 959.0695215606019px;
+  top: 143px;
+  left: -129px;
+  transform: rotate(9.13deg);
+}
+
+.login-logo {
+  position: absolute;
+  width: 251px;
+  height: 40.0756950378418px;
+  top: 883px;
+  left: 79px;
+  border-radius: 3.16px;
+}
+
+.login-logo-text {
+  position: absolute;
+  width: 126px;
+  height: 89px;
+  top: 887px;
+  left: 124px;
+
+  font-family: "Manrope", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 89px;
+  letter-spacing: 0%;
+  color: #FFFFFF;
+}
+
+.login-logo-solo {
+  position: absolute;
+  width: 49px;
+  height: 54.4444465637207px;
+  top: 111.48px;
+  left: 779px;
+  border-radius: 1.77px;
+}
+
+.login-form-title {
+  position: absolute;
+  width: 430px;
+  height: 89px;
+  top: 222px;
+  left: 779px;
+
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 89px;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+  color: #566A7F;
+}
+
+.login-form-subtitle {
+  position: absolute;
+   width: 350px;
+  height: 22px;
+  top: 302px;
+  left: 781px;
+
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 3%;
+  color: #AAB4BF;
+  text-transform: none;
+}
+.login-input {
+  position: absolute;
+  width: 521px;
+  height: 60px;
+  top: 410px;
+  left: 786px;
+  border-radius: 9px;
+  border: 2px solid #696CFF;
+  padding-left: 25px;
+}
+
+.login-input::placeholder {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 89px;
+  letter-spacing: 0%;
+  text-transform:none;
+  color: #566A7F;
+}
+
+.login-input-label {
+  position: absolute;
+  top: 394px;
+  left: 803px;
+
+  width: 50px;
+  height: 28px;
+
+  font-family: "Manrope", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: 0%;
+  color: #696CFF;
+
+  background: #FFFFFF;
+  padding: 4px 6px;
+  z-index: 2;
+}
+
+.login-password-input {
+  position: absolute;
+  width: 521px;
+  height: 60px;
+  top: 500px;
+  left: 786px;
+  border-radius: 9px;
+  border: 2px solid #696CFF;
+  padding-left: 25px;
+}
+
+.login-password-input::placeholder {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 89px;
+  letter-spacing: 0%;
+  text-transform: lowercase;
+  color: #566A7F;
+}
+
+.forgot-password {
+  position: absolute;
+  width: 144px;
+  height: 22px;
+  top: 577px;
+  left: 787px;
+
+  font-family: "Manrope", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 3%;
+  color: #696CFF;
+
+  background: none;
+  border: none;
+  padding: 0;
+  text-decoration: none;
+}
+.login-password-label {
+  position: absolute;
+  top: 483px;
+  left: 803px;
+
+  height: 28px;
+
+  font-family: "Manrope", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: 0%;
+  color: #696CFF;
+
+  background: #FFFFFF;
+  padding: 6px 8px;
+  z-index: 2;
+}
+
+.login-button {
+  position: absolute;
+  width: 521px;
+  height: 60px;
+  top: 690px;
+  left: 786px;
+  border-radius: 9px;
+  border: none;
+  background: #696CFF;
+
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 89px;
+  letter-spacing: 0%;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-text {
+  position: absolute;
+  width: 235px;
+  height: 22px;
+  top: 774px;
+  left: 929px;
+
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 3%;
+  color: #566A7F;
+}
+
+.register-text a {
+  color: #696CFF;
+  text-decoration: none;
+}

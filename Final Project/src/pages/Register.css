@@ -1,0 +1,607 @@
+.register-main {
+  width: 100vw;
+  height: 1024px;
+  margin: 0;
+  background: linear-gradient(147.1deg, #696CFF 35.1%, #9574FF 77.5%);
+  overflow: hidden;
+}
+
+.register-title {
+  position: absolute;
+  width: 442px;
+  height: 267px;
+  top: 99px;
+  left: 79px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  font-size: 88.63px;
+  line-height: 89px;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+
+.register-subtitle {
+  position: absolute;
+  width: 433px;
+  height: 89px;
+  top: 344px;
+  left: 79px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 89px;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+
+.register-rocket {
+  position: absolute;
+  width: 1071.8098172667103px;
+  height: 959.0695215606019px;
+  top: 143px;
+  left: -129px;
+  transform: rotate(9.13deg);
+  overflow: hidden;
+ 
+}
+
+.register-logo {
+  position: absolute;
+  width: 251px;
+  height: 40.0756950378418px;
+  top: 883px;
+  left: 79px;
+  border-radius: 3.16px;
+}
+
+.register-logo-text {
+  position: absolute;
+  width: 126px;
+  height: 89px;
+  top: 887px;
+  left: 124px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 89px;
+  letter-spacing: 0%;
+  color: #FFFFFF;
+}
+
+.register-white-section {
+  position: absolute;
+  width: 1031px;
+  height: 1024px;
+  top: 0;
+  left: 620px;
+  border-radius: 41px;
+  background: #FFFFFF;
+  
+}
+
+.register-logo-solo {
+  position: absolute;
+  width: 49px;
+  height: 54.4444465637207px;
+  top: 111.48px;
+  left: 790px;
+  border-radius: 1.77px;
+}
+
+.register-form-title {
+  position: absolute;
+  width: 407px;
+  height: 89px;
+  top: 161px;
+  left: 790px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  font-style: bold;
+  font-size: 34px;
+  line-height: 89px;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+  color: #566A7F;
+}
+
+.startup-button,
+.mentor-button {
+  position: absolute;
+  width: 260px;
+  height: 38px;
+  top: 290px;
+  border-radius: 8px;
+  padding: 8px 20px;
+  gap: 10px;
+  border: none;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.startup-button {
+  left: 790px;
+  background: #F5F5F9;
+  color: #566A7F;
+}
+
+.mentor-button {
+  left: 1050px;
+  background: #F5F5F9;
+  color: #566A7F;
+}
+
+.startup-button.active,
+.mentor-button.active {
+  background: #696CFF;
+  color: #FFFFFF;
+}
+
+.register-email-input {
+  position: absolute;
+  width: 521px;
+  height: 60px;
+  top: 410px;
+  left: 786px;
+  border-radius: 9px;
+  border: 1px solid #D3D3FF;
+  padding-left: 25px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  color: #566A7F;
+  outline: none;
+}
+
+.register-email-input:focus {
+  border: 2px solid #696CFF;
+}
+
+.register-email-input::placeholder {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 89px;
+  letter-spacing: 0%;
+  text-transform: lowercase;
+  color: #566A7F;
+}
+
+.register-email-label {
+  position: absolute;
+  top: 394px;
+  left: 803px;
+  height: 28px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: 0%;
+  color: #696CFF;
+  background: #FFFFFF;
+  padding: 4px 6px;
+  z-index: 2;
+}
+
+.register-password-input {
+  position: absolute;
+  width: 521px;
+  height: 60px;
+  top: 500px;
+  left: 786px;
+  border-radius: 9px;
+  border: 1px solid #D3D3FF;
+  padding-left: 25px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  color: #566A7F;
+  outline: none;
+}
+
+.register-password-input:focus {
+  border: 2px solid #696CFF;
+}
+
+.register-password-input::placeholder {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 89px;
+  letter-spacing: 0%;
+  text-transform: lowercase;
+  color: #566A7F;
+}
+
+.register-password-label {
+  position: absolute;
+  top: 484px;
+  left: 803px;
+  height: 28px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: 0%;
+  color: #696CFF;
+  background: #FFFFFF;
+  padding: 6px 8px;
+  z-index: 2;
+}
+
+.password-check {
+  position: absolute;
+  width: auto;
+  height: auto;
+  top: 580px;
+  left: 786px;
+}
+
+.password-strength {
+  position: absolute;
+  width: 297px;
+  height: 12px;
+  top: 580px;
+  left: 810px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  color: #AAB4BF;
+}
+
+.password-check-name {
+  position: absolute;
+  width: auto;
+  height: auto;
+  top: 600px;
+  left: 786px;
+}
+
+.password-name-text {
+  position: absolute;
+  width: 297px;
+  height: 12px;
+  top: 600px;
+  left: 810px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  color: #AAB4BF;
+}
+
+.password-check-length {
+  position: absolute;
+  width: auto;
+  height: auto;
+  top: 620px;
+  left: 786px;
+}
+
+.password-length-text {
+  position: absolute;
+  width: 297px;
+  height: 12px;
+  top: 620px;
+  left: 810px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  color: #AAB4BF;
+}
+
+.password-check-symbol {
+  position: absolute;
+  width: auto;
+  height: auto;
+  top: 640px;
+  left: 786px;
+}
+
+.password-symbol-text {
+  position: absolute;
+  width: 297px;
+  height: 12px;
+  top: 640px;
+  left: 810px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  color: #AAB4BF;
+}
+
+.password-length-text.valid,
+.password-symbol-text.valid,
+.password-name-text.valid,
+.password-strength.valid {
+  color: #696CFF;
+}
+
+.register-continue-button {
+  position: absolute;
+  width: 521px;
+  height: 60px;
+  top: 720px;
+  left: 786px;
+  border-radius: 9px;
+  padding: 10px;
+  gap: 10px;
+  border: none;
+  background: #696CFF;
+
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  font-style: bold;
+  font-size: 20px;
+  line-height: 89px;
+  letter-spacing: 0%;
+  color: #FFFFFF;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.already-account {
+  position: absolute;
+  width: 235px;
+  height: 22px;
+  top: 794px;
+  left: 929px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 3%;
+  color: #566A7F;
+  z-index: 10;
+}
+
+.already-account a {
+  color: #696CFF;
+  text-decoration: none;
+}
+
+.startup-name-input,
+.legal-representative-input,
+.business-address-input,
+.invite-mentors-input {
+  position: absolute;
+  width: 521px;
+  height: 60px;
+  left: 786px;
+  border-radius: 9px;
+  border: 1px solid #D3D3FF;
+  padding-left: 25px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  color: #566A7F;
+  outline: none;
+}
+
+.startup-name-input {
+  top: 410px;
+}
+
+.legal-representative-input {
+  top: 500px;
+}
+
+.business-address-input {
+  top: 590px;
+}
+
+.invite-mentors-input {
+  top: 680px;
+}
+
+.startup-name-input:focus,
+.legal-representative-input:focus,
+.business-address-input:focus,
+.invite-mentors-input:focus {
+  border: 2px solid #696CFF;
+}
+
+.startup-name-input::placeholder,
+.legal-representative-input::placeholder,
+.business-address-input::placeholder,
+.invite-mentors-input::placeholder {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  color: #566A7F;
+}
+
+.startup-name-label,
+.legal-representative-label,
+.business-address-label,
+.invite-mentors-label {
+  position: absolute;
+  left: 803px;
+  height: 28px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+  color: #696CFF;
+  background: #FFFFFF;
+  padding: 4px 6px;
+  z-index: 2;
+}
+
+.startup-name-label {
+  top: 394px;
+}
+
+.legal-representative-label {
+  top: 484px;
+}
+
+.business-address-label {
+  top: 574px;
+}
+
+.invite-mentors-label {
+  top: 664px;
+}
+
+
+.register-startup-button {
+  position: absolute;
+  width: 521px;
+  height: 60px;
+  top: 780px;
+  left: 786px;
+  border-radius: 9px;
+  padding: 10px;
+  gap: 10px;
+  border: none;
+  background: #696CFF;
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  font-style: bold;
+  font-size: 20px;
+  line-height: 89px;
+  letter-spacing: 0%;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.startup-terms {
+  position: absolute;
+  width: 408px;
+  height: 14px;
+  top: 864px;
+  left: 849px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: #566A7F;
+}
+
+.startup-terms a {
+  font-family: "Manrope", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #696CFF;
+  text-decoration: none;
+}
+
+.startup-terms-checkbox {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  top: 862px;
+  left: 840px;
+  border: 1px solid #696CFF;
+  border-radius: 1.26px;
+  opacity: 1;
+  cursor: pointer;
+  accent-color: #696CFF;
+}
+
+.startup-setup-title {
+  width: 600px;
+  white-space: nowrap;
+}
+
+.startup-photo-upload {
+  position: absolute;
+  top: 345px;
+  left: 1000px;
+  width: 90px;
+  height: 90px;
+  z-index: 5;
+}
+
+.startup-photo-circle {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  border: 2px solid #696CFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #696CFF;
+  background: #FFFFFF;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.startup-photo-preview {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.startup-photo-camera {
+  position: absolute;
+  top: 0;
+  right: -6px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  color: #696CFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 4px #00000020;
+}
+
+/* Startup Step 2 only */
+
+.register-main:has(.startup-photo-upload) .register-logo-solo {
+  top: 35px;
+}
+
+.register-main:has(.startup-photo-upload) .register-form-title {
+  top: 85px;
+}
+
+.register-main:has(.startup-photo-upload) .startup-button,
+.register-main:has(.startup-photo-upload) .mentor-button {
+  top: 205px;
+}
+
+/* Company photo upload */
+.register-main:has(.startup-photo-upload) .startup-photo-upload {
+  top: 275px;
+  left: 1000px;
+}
+
+.register-main:has(.startup-photo-upload) > :not(.register-white-section):not(.register-title):not(.register-subtitle):not(.rocket-div):not(.register-logo):not(.register-logo-text) {
+  transform: translateY(30px);
+}

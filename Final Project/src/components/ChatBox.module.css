@@ -1,0 +1,144 @@
+.container {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px;
+  background-color: #f5f5f7;
+  border: 1px solid #d5d5da;
+}
+
+.title {
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333333;
+}
+
+.chatArea {
+  height: 300px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 12px;
+  background: #ffffff;
+  border: 1px solid #dedee8;
+  border-radius: 9px;
+  box-sizing: border-box;
+}
+
+.userMessage {
+  align-self: flex-end;
+  width: 72%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 9px 11px;
+  background-color: #7055ff;
+  color: white;
+  border-radius: 12px;
+  font-size: 12px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.aiMessage {
+  align-self: flex-start;
+  width: 72%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 9px 11px;
+  background-color: #ffffff;
+  color: #333333;
+  border: 1px solid #d9d9e3;
+  border-radius: 12px;
+  font-size: 12px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.inputArea {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.inputArea input {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 10px;
+  border: 1px solid #d5d5e0;
+  border-radius: 5px;
+  background: #ffffff;
+  font-size: 12px;
+  outline: none;
+}
+
+.inputArea input:focus {
+  border-color: #7055ff;
+}
+
+.inputArea button {
+  width: 60px;
+  border: none;
+  border-radius: 5px;
+  background-color: #7055ff;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.inputArea button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+
+  .chatArea {
+    height: 350px;
+  }
+
+  .userMessage,
+  .aiMessage {
+    width: 90%;
+  }
+}
+
+.container {
+  font-family: "Manrope", sans-serif;
+}
+
+.title {
+  font-family: "Manrope", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333333;
+}
+
+.chatArea,
+.userMessage,
+.aiMessage {
+  font-family: "Manrope", sans-serif;
+}
+
+.inputArea input {
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.inputArea input::placeholder {
+  font-family: "Manrope", sans-serif;
+  color: #9ca3af;
+  opacity: 1;
+}
+
+.inputArea button {
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}

@@ -1,0 +1,1106 @@
+
+.startup-dashboard-profile {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  top: 42px;
+  left: 1219px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #696CFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  z-index: 10;
+}
+
+.startup-dashboard-profile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.startup-dashboard-profile-name {
+  position: absolute;
+  width: 88px;
+  height: 44px;
+  top: 49px;
+  left: 1290px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 15px;
+  line-height: 22px;
+  letter-spacing: 0;
+  color: #566A7F;
+  overflow-wrap: break-word;
+  z-index: 10;
+}
+
+/* Mentors list */
+
+.startup-mentors-list {
+  position: absolute;
+  top: 150px;
+  left: 313px;
+  width: 741px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 30px;
+}
+
+.startup-mentors-message {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: #566A7F;
+}
+
+/* Mentor card */
+
+.startup-mentor-card {
+  position: relative;
+  width: 741px;
+  height: 160px;
+  background: #ffffff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  padding: 18px;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  flex-shrink: 0;
+}
+
+.startup-mentor-photo,
+.startup-mentor-photo-placeholder {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.startup-mentor-photo {
+  object-fit: cover;
+}
+
+.startup-mentor-photo-placeholder {
+  background: #696CFF;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.startup-mentor-info {
+  margin-left: 17px;
+  padding-right: 95px;
+  min-width: 0;
+}
+
+.startup-mentor-heading {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.startup-mentor-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: #232323;
+}
+
+.startup-mentor-linkedin {
+  background: #696CFF;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  font-weight: bold;
+  padding: 1px 3px;
+  border-radius: 2px;
+  text-decoration: none;
+}
+
+.startup-mentor-rating {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 5px;
+}
+
+.startup-mentor-stars {
+  color: #865DFF;
+  font-size: 17px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.startup-mentor-rating-text {
+  font-size: 9px;
+  color: #232323;
+}
+
+.startup-mentor-skills {
+  margin-top: 7px;
+  font-size: 10px;
+  color: #232323;
+}
+
+.startup-mentor-description {
+  margin-top: 9px;
+  font-size: 9px;
+  color: #232323;
+}
+
+.startup-mentor-view-button {
+  position: absolute;
+  right: 25px;
+  top: 105px;
+  width: 70px;
+  height: 24px;
+  background: #696CFF;
+  color: #ffffff;
+  border: none;
+  border-radius: 3px;
+  font-family: "Poppins", sans-serif;
+  font-size: 9px;
+  cursor: pointer;
+}
+
+.startup-mentor-view-button:hover {
+  background: #5558E8;
+}
+
+.startup-overview-error {
+  position: absolute;
+  top: 920px;
+  left: 957px;
+  color: #f2076a;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+}
+
+/* Startup Quick Overview position */
+
+.mentor-dashboard-main .startup-quick-overview-title {
+  position: absolute;
+  top: 150px;
+  left: 1090px;
+}
+
+.mentor-dashboard-main .startup-quick-overview {
+  position: absolute;
+  top: 205px;
+  left: 1090px;
+}
+
+/* Startup Jobs Feed */
+
+.startup-job-feed {
+  position: absolute;
+  top: 150px;
+  left: 310px;
+  width: calc(100% - 350px);
+  box-sizing: border-box;
+  padding-bottom: 60px;
+}
+
+.startup-job-feed-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 48px;
+}
+
+.startup-job-feed-header h2 {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  color: #404D61;
+}
+
+.startup-create-job-button {
+  height: 40px;
+  padding: 0 20px;
+  border: none;
+  border-radius: 9px;
+  background: #696CFF;
+  color: white;
+  font-family: "Manrope", sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.startup-create-job-button:hover {
+  background: #5558E8;
+}
+
+.startup-job-feed .mentor-job-feed-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px 16px;
+}
+
+.startup-job-feed .mentor-feed-job-card {
+  box-sizing: border-box;
+}
+
+.startup-job-feed .mentor-feed-company-logo {
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.startup-job-feed .mentor-feed-company-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.startup-job-feed .mentor-feed-company > span {
+  overflow-wrap: anywhere;
+}
+
+/* Create Job Page */
+
+.startup-create-job-page {
+  position: absolute;
+  top: 150px;
+  left: 313px;
+  width: 900px;
+  padding-bottom: 60px;
+}
+
+.startup-create-job-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.startup-create-job-header h2 {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  color: #404D61;
+}
+
+.startup-create-job-back {
+  border: none;
+  background: transparent;
+  color: #696CFF;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.startup-create-job-form {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 35px;
+  box-sizing: border-box;
+}
+
+.startup-create-job-form h3 {
+  margin: 0 0 30px;
+  font-family: "Manrope", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #566A7F;
+}
+
+.startup-create-job-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.startup-create-job-field label {
+  font-family: "Manrope", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #566A7F;
+}
+
+.startup-create-job-field input,
+.startup-create-job-field select,
+.startup-create-job-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #D3D3FF;
+  border-radius: 9px;
+  background: #FFFFFF;
+  padding: 15px;
+  outline: none;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  color: #566A7F;
+}
+
+.startup-create-job-field input,
+.startup-create-job-field select {
+  height: 52px;
+}
+
+.startup-create-job-field textarea {
+  resize: vertical;
+  min-height: 160px;
+}
+
+.startup-create-job-field input:focus,
+.startup-create-job-field select:focus,
+.startup-create-job-field textarea:focus {
+  border-color: #696CFF;
+}
+
+.startup-create-job-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.startup-create-job-cancel,
+.startup-create-job-submit {
+  height: 45px;
+  padding: 0 25px;
+  border-radius: 9px;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.startup-create-job-cancel {
+  background: #FFFFFF;
+  border: 1px solid #696CFF;
+  color: #696CFF;
+}
+
+.startup-create-job-submit {
+  background: #696CFF;
+  border: none;
+  color: #FFFFFF;
+}
+
+.startup-create-job-submit:hover {
+  background: #5558E8;
+}
+
+.startup-create-job-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.startup-create-job-error {
+  font-family: "Manrope", sans-serif;
+  font-size: 13px;
+  color: #F2076A;
+}
+
+/* VIEW MENTOR PAGE */
+
+.startup-view-mentor-page {
+  position: absolute;
+  top: 145px;
+  left: 313px;
+  width: calc(100% - 360px);
+  box-sizing: border-box;
+}
+
+.startup-view-mentor-back {
+  border: none;
+  background: transparent;
+  color: #696CFF;
+  font-family: "Manrope", sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.startup-view-mentor-top {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.startup-view-mentor-profile {
+  width: 210px;
+  min-width: 210px;
+  height: 245px;
+  background: #FFFFFF;
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding: 25px 12px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.startup-view-mentor-photo {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.startup-view-mentor-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #696CFF;
+  color: white;
+  font-size: 30px;
+}
+
+.startup-view-mentor-name-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 12px;
+}
+
+.startup-view-mentor-name-row h2 {
+  margin: 0;
+  color: #566A7F;
+  font-family: "Manrope", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.startup-view-mentor-linkedin {
+  color: #696CFF;
+  font-weight: 700;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.startup-view-mentor-role {
+  width: 100%;
+  margin: 4px 0 10px;
+  color: #696CFF;
+  font-family: "Manrope", sans-serif;
+  font-size: 12px;
+  text-align: left;
+  padding-left: 55px;
+}
+
+.startup-view-mentor-contact {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-left: 35px;
+}
+
+.startup-view-mentor-contact div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #566A7F;
+  font-family: "Manrope", sans-serif;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+
+.startup-view-mentor-contact div span:first-child {
+  color: #696CFF;
+}
+
+.startup-view-mentor-about {
+  flex: 1;
+  min-width: 0;
+  height: 245px;
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 35px 20px;
+  box-sizing: border-box;
+}
+
+.startup-view-mentor-about-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.startup-view-mentor-about-header h3 {
+  margin: 0;
+  color: #696CFF;
+  font-family: "Manrope", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.startup-view-mentor-offer-button {
+  background: #696CFF;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 7px;
+  height: 34px;
+  padding: 0 18px;
+  font-family: "Manrope", sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.startup-view-mentor-skills {
+  margin: 0 0 12px;
+  color: #232323;
+  font-family: "Manrope", sans-serif;
+  font-size: 12px;
+}
+
+.startup-view-mentor-description {
+  margin: 0;
+  color: #566A7F;
+  font-family: "Manrope", sans-serif;
+  font-size: 11px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  max-height: 135px;
+  overflow-y: auto;
+}
+
+/* VIEW MENTOR - ASSIGNED JOBS */
+
+.startup-view-mentor-assigned {
+  width: 46%;
+  margin-top: 30px;
+  margin-left: -15px;
+}
+
+.startup-view-mentor-assigned h2 {
+  margin: 0 0 12px 7px;
+  font-family: "Manrope", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #404D61;
+}
+
+.startup-view-mentor-job-tabs {
+  display: flex;
+  gap: 15px;
+  border-bottom: 1px solid #E1E4EA;
+  margin-bottom: 10px;
+}
+
+.startup-view-mentor-job-tabs button {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 7px 6px 9px;
+  color: #566A7F;
+  font-family: "Manrope", sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.startup-view-mentor-job-tabs button.active {
+  color: #696CFF;
+  border-bottom-color: #696CFF;
+}
+
+.startup-view-mentor-assigned-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.startup-view-mentor-assigned-row {
+  height: 43px;
+  padding: 0 18px 0 12px;
+  background: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.startup-view-mentor-assigned-title {
+  font-family: "Manrope", sans-serif;
+  font-size: 11px;
+  color: #566A7F;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.startup-view-mentor-job-status {
+  min-width: 70px;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Manrope", sans-serif;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.startup-view-mentor-job-status.completed {
+  background: #E8F7E9;
+  color: #40B34F;
+}
+
+.startup-view-mentor-job-status.canceled {
+  background: #FFEDF2;
+  color: #F2076A;
+}
+
+.startup-view-mentor-job-status.in_progress {
+  background: #ECEBFF;
+  color: #696CFF;
+}
+
+.startup-view-mentor-job-status.pending {
+  background: #FFF3E0;
+  color: #D48A16;
+}
+
+.startup-view-mentor-job-status.rejected {
+  background: #FFEDF2;
+  color: #F2076A;
+}
+
+.startup-view-mentor-empty {
+  color: #566A7F;
+  font-family: "Manrope", sans-serif;
+  font-size: 12px;
+}
+
+/* OFFER NEW JOB MODAL */
+
+.startup-offer-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(35, 35, 35, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.startup-offer-modal {
+  width: 480px;
+  max-width: calc(100vw - 40px);
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 30px;
+  box-sizing: border-box;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  font-family: "Manrope", sans-serif;
+}
+
+.startup-offer-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.startup-offer-modal-header h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  color: #404D61;
+}
+
+.startup-offer-modal-close {
+  border: none;
+  background: transparent;
+  font-size: 28px;
+  color: #566A7F;
+  cursor: pointer;
+}
+
+.startup-offer-modal-subtitle {
+  margin: 12px 0 28px;
+  font-size: 13px;
+  color: #566A7F;
+}
+
+.startup-offer-modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.startup-offer-modal-field label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #404D61;
+}
+
+.startup-offer-modal-field select {
+  width: 100%;
+  height: 48px;
+  border: 1px solid #D3D3FF;
+  border-radius: 9px;
+  padding: 0 14px;
+  font-family: "Manrope", sans-serif;
+  font-size: 13px;
+  color: #566A7F;
+  background: #FFFFFF;
+  outline: none;
+}
+
+.startup-offer-modal-field select:focus {
+  border-color: #696CFF;
+}
+
+.startup-offer-modal-description {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 9px;
+  background: #F6F6FF;
+}
+
+.startup-offer-modal-description h3 {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #404D61;
+}
+
+.startup-offer-modal-description p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #566A7F;
+  max-height: 140px;
+  overflow-y: auto;
+}
+
+.startup-offer-modal-message {
+  font-size: 12px;
+  color: #566A7F;
+  margin-top: 18px;
+}
+
+.startup-offer-modal-error {
+  font-size: 12px;
+  color: #F2076A;
+  margin-top: 18px;
+}
+
+.startup-offer-modal-success {
+  font-size: 13px;
+  color: #40B34F;
+  margin-top: 18px;
+}
+
+.startup-offer-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.startup-offer-modal-cancel,
+.startup-offer-modal-submit {
+  height: 42px;
+  padding: 0 22px;
+  border-radius: 8px;
+  font-family: "Manrope", sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.startup-offer-modal-cancel {
+  background: #FFFFFF;
+  border: 1px solid #D3D3FF;
+  color: #566A7F;
+}
+
+.startup-offer-modal-submit {
+  background: #696CFF;
+  border: none;
+  color: #FFFFFF;
+}
+
+.startup-offer-modal-submit:hover {
+  background: #5558E8;
+}
+
+.startup-offer-modal-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* PENDING JOB OFFERS */
+
+.startup-view-mentor-pending {
+  position: absolute;
+  top: 308px;
+  left: 550px;
+  width: 479px;
+}
+
+.startup-view-mentor-pending h2 {
+  width: 208px;
+  height: 22px;
+  margin: 0 0 26px 4px;
+  color: #404D61;
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.startup-view-mentor-pending-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.startup-view-mentor-pending-card {
+  position: relative;
+  width: 479px;
+  height: 52px;
+  background: #FFFFFF;
+  box-sizing: border-box;
+}
+
+.startup-view-mentor-pending-title {
+  position: absolute;
+  top: 15px;
+  left: 16px;
+  width: 186.5px;
+  height: 19px;
+  color: #566A7F;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 13.2px;
+  font-weight: 400;
+  line-height: 18.85px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.startup-view-mentor-cancel-offer {
+  position: absolute;
+  top: 13px;
+  left: 343px;
+  width: 115.47px;
+  height: 25.66px;
+  padding: 0;
+  border: 1px solid #F2076A;
+  border-radius: 6.41px;
+  background: #FFFFFF;
+  color: #F2076A;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 9.48px;
+  font-weight: 400;
+  line-height: 13.54px;
+  cursor: pointer;
+}
+
+.startup-view-mentor-cancel-offer:hover {
+  background: #FFF0F5;
+}
+
+.startup-view-mentor-cancel-offer:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.startup-view-mentor-pending-message {
+  color: #566A7F;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 13.2px;
+}
+
+.startup-best-mentors-title {
+  position: absolute;
+  width: 272px;
+  height: 22px;
+  top: 176px;
+  left: 840px;
+  margin: 0;
+
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 22px;
+  letter-spacing: 0;
+
+  color: #404D61;
+  opacity: 1;
+}
+
+/* BEST PERFORMING MENTORS CARDS */
+
+.startup-best-mentors-cards {
+  position: absolute;
+  top: 215px;
+  left: 840px;
+  width: 572px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 2;
+}
+
+.startup-best-mentor-card {
+  width: 572px;
+  height: 111px;
+  min-height: 111px;
+  flex-shrink: 0;
+  background: #FFFFFF;
+  box-sizing: border-box;
+}
+
+/* FIRST CARD */
+.startup-best-mentor-card.first {
+  border-radius: 12px 12px 0 0;
+}
+
+/* MIDDLE CARD */
+.startup-best-mentor-card.middle {
+  border-radius: 0;
+}
+
+/* LAST CARD */
+.startup-best-mentor-card.last {
+  border-radius: 0 0 12px 12px;
+}
+
+.startup-best-mentor-card {
+  position: relative;
+}
+
+.startup-best-mentor-photo {
+  position: absolute;
+  top: 42px;
+  left: 31px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.startup-best-mentor-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #E9E9FF;
+  color: #696CFF;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.startup-best-mentor-name {
+  position: absolute;
+  top: 55px;
+  left: 92px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #8B8795;
+  white-space: nowrap;
+}
+
+/* COMPLETED JOBS NUMBER */
+
+.startup-best-mentor-jobs-count {
+  position: absolute;
+  top: 41px;
+  left: 319px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #696CFF;
+  text-align: center;
+}
+
+/* ACHIEVED JOBS LABEL */
+
+.startup-best-mentor-jobs-label {
+  position: absolute;
+  top: 71px;
+  left: 294px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #566A7F;
+}
+
+.startup-best-mentor-arrow {
+  position: absolute;
+  top: 51px;
+  left: 509px;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(86%) sepia(8%)
+    saturate(323%) hue-rotate(219deg) brightness(94%) contrast(88%);
+}
+
+.startup-best-mentor-arrow.top-performer {
+  filter: brightness(0) saturate(100%) invert(49%) sepia(66%)
+    saturate(1585%) hue-rotate(207deg) brightness(101%) contrast(101%);
+}
+
+/* STARTUP PERFORMANCE GRAPH */
+
+.startup-performance-chart {
+  position: absolute;
+  top: 615px;
+  left: 840px;
+  width: 572px;
+  height: 300px;
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.startup-statistics-title {
+  position: absolute;
+  top: 24px;
+  left: 31px;
+  font-family: "Manrope", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #404D61;
+}
+
+.startup-statistics-subtitle {
+  position: absolute;
+  top: 51px;
+  left: 31px;
+  font-family: "Manrope", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #8B8795;
+}
+
+.startup-line-chart {
+  position: absolute;
+  top: 95px;
+  left: 31px;
+}
+
+.startup-statistics-error {
+  position: absolute;
+  top: 72px;
+  left: 31px;
+  font-family: "Manrope", sans-serif;
+  font-size: 12px;
+  color: #D9534F;
+}
